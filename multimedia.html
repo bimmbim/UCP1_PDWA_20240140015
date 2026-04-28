@@ -2,21 +2,545 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Multimedia Tech Community</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multimedia - Tech Community</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0f0f17;
+        color: #d4d4e8;
+        font-family: "Segoe UI", sans-serif;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        background-color: #13131f !important;
+        border-bottom: 1px solid #1e1e32;
+        padding: 14px 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: #fff !important;
+      }
+
+      .navbar-brand span {
+        color: #6c63ff;
+      }
+
+      .nav-link {
+        color: #888 !important;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 6px 14px !important;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .nav-link:hover {
+        color: #fff !important;
+        background: #1e1e32;
+      }
+      .nav-link.active {
+        color: #fff !important;
+        background: #1e1e32;
+      }
+
+      /* PAGE HEADER */
+      .page-header {
+        padding: 50px 20px 30px;
+        text-align: center;
+      }
+
+      .page-header .tag {
+        display: inline-block;
+        background: rgba(108, 99, 255, 0.12);
+        border: 1px solid rgba(108, 99, 255, 0.3);
+        color: #9d97ff;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 20px;
+        margin-bottom: 14px;
+      }
+
+      .page-header h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+
+      .page-header p {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      /* MEDIA CARD */
+      .media-card {
+        background: #13131f;
+        border: 1px solid #1e1e32;
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .media-card-header {
+        padding: 18px 22px 14px;
+        border-bottom: 1px solid #1e1e32;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .media-card-header .icon-box {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+
+      .icon-img {
+        background: rgba(108, 99, 255, 0.15);
+      }
+      .icon-audio {
+        background: rgba(236, 72, 153, 0.15);
+      }
+      .icon-video {
+        background: rgba(34, 211, 238, 0.12);
+      }
+
+      .media-card-header h5 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0;
+      }
+
+      .media-card-header p {
+        font-size: 0.78rem;
+        color: #555;
+        margin: 0;
+      }
+
+      .media-card-body {
+        padding: 20px 22px 22px;
+      }
+
+      /* IMAGE */
+      #gambar-utama {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid #1e1e32;
+        display: block;
+        transition: opacity 0.25s;
+      }
+
+      .img-btn-group {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+        flex-wrap: wrap;
+      }
+
+      .btn-img {
+        padding: 6px 16px;
+        background: #1a1a2e;
+        border: 1px solid #1e1e32;
+        border-radius: 7px;
+        color: #888;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-img:hover,
+      .btn-img.active {
+        border-color: #6c63ff;
+        color: #9d97ff;
+        background: rgba(108, 99, 255, 0.08);
+      }
+
+      #info-gambar {
+        display: none;
+        margin-top: 12px;
+        padding: 10px 14px;
+        background: #0f0f17;
+        border: 1px solid #1e1e32;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        color: #888;
+      }
+
+      /* AUDIO */
+      .audio-player {
+        background: #0f0f17;
+        border: 1px solid #1e1e32;
+        border-radius: 10px;
+        padding: 18px;
+      }
+
+      .audio-track {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .audio-thumb {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #6c63ff, #ec4899);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .audio-track-name {
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+      .audio-track-sub {
+        color: #555;
+        font-size: 0.78rem;
+      }
+
+      .audio-controls {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn-audio {
+        padding: 7px 18px;
+        border-radius: 7px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: opacity 0.2s;
+      }
+
+      .btn-audio:hover {
+        opacity: 0.85;
+      }
+      .btn-play {
+        background: #6c63ff;
+        color: #fff;
+      }
+      .btn-pause {
+        background: #f59e0b;
+        color: #fff;
+      }
+      .btn-stop {
+        background: #ef4444;
+        color: #fff;
+      }
+
+      #status-audio {
+        font-size: 0.8rem;
+        color: #555;
+      }
+
+      /* VIDEO */
+      .video-wrap {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+        background: #000;
+        border: 1px solid #1e1e32;
+      }
+
+      .video-wrap iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
+
+      .video-desc {
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: #555;
+      }
+
+      .btn-back {
+        display: inline-block;
+        padding: 10px 22px;
+        background: transparent;
+        color: #888;
+        border: 1px solid #1e1e32;
+        border-radius: 8px;
+        font-size: 0.88rem;
+        text-decoration: none;
+        transition: all 0.2s;
+        margin-bottom: 60px;
+      }
+
+      .btn-back:hover {
+        border-color: #6c63ff;
+        color: #9d97ff;
+      }
+
+      footer {
+        border-top: 1px solid #1e1e32;
+        text-align: center;
+        padding: 24px;
+        color: #444;
+        font-size: 0.82rem;
+      }
+    </style>
   </head>
   <body>
-    <h2>Gambar</h2>
-    <img src="contohgambar.png" alt="Gambar Mpruy" width="300" />
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html"
+          >Tech<span>Community</span></a
+        >
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto gap-1">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./daftar.html">Daftar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./multimedia.html">Multimedia</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <h2>Audio</h2>
-    <audio controls>
-      <source src="audio.mp3" type="audio/mpeg" />
-    </audio>
+    <div class="page-header">
+      <div class="tag">🎬 Konten Komunitas</div>
+      <h2>Halaman Multimedia</h2>
+      <p>Foto, audio, dan video dari Tech Community.</p>
+    </div>
 
-    <h2>Video</h2>
-    <video width="400" controls>
-      <source src="video.mp4" type="video/mp4" />
-    </video>
-    <a href="index.html">kembali</a>
+    <div class="container pb-4">
+      <!-- GAMBAR -->
+      <div class="media-card">
+        <div class="media-card-header">
+          <div class="icon-box icon-img">🖼️</div>
+          <div>
+            <h5>Galeri Foto</h5>
+            <p>Klik tombol di bawah untuk ganti gambar</p>
+          </div>
+        </div>
+        <div class="media-card-body">
+          <img
+            id="gambar-utama"
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80"
+            alt="Foto Tech"
+          />
+
+          <div class="img-btn-group">
+            <button class="btn-img active" onclick="gantiGambar(0, this)">
+              Foto 1 — Tim
+            </button>
+            <button class="btn-img" onclick="gantiGambar(1, this)">
+              Foto 2 — Coding
+            </button>
+            <button class="btn-img" onclick="gantiGambar(2, this)">
+              Foto 3 — Inovasi
+            </button>
+            <button class="btn-img" onclick="tampilInfo(this)">
+              Info Foto
+            </button>
+          </div>
+
+          <div id="info-gambar"></div>
+        </div>
+      </div>
+
+      <!-- AUDIO -->
+      <div class="media-card">
+        <div class="media-card-header">
+          <div class="icon-box icon-audio">🎵</div>
+          <div>
+            <h5>Audio Player</h5>
+            <p>Putar, jeda, atau stop audio di bawah</p>
+          </div>
+        </div>
+        <div class="media-card-body">
+          <audio id="audio-ku">
+            <source src="audio.mp3" type="audio/mpeg" />
+            Browser kamu tidak mendukung audio.
+          </audio>
+
+          <div class="audio-player">
+            <div class="audio-track">
+              <div class="audio-thumb">🎧</div>
+              <div>
+                <div class="audio-track-name">Tech Vibes Mix</div>
+                <div class="audio-track-sub">Tech Community Playlist</div>
+              </div>
+            </div>
+
+            <div class="audio-controls">
+              <button class="btn-audio btn-play" onclick="putarAudio()">
+                ▶ Putar
+              </button>
+              <button class="btn-audio btn-pause" onclick="jedaAudio()">
+                ⏸ Jeda
+              </button>
+              <button class="btn-audio btn-stop" onclick="stopAudio()">
+                ⏹ Stop
+              </button>
+            </div>
+
+            <div id="status-audio">Status: siap diputar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="media-card">
+        <div class="media-card-header">
+          <div class="icon-box icon-video">🎬</div>
+          <div>
+            <h5>Video</h5>
+            <p>Embedded YouTube via iframe</p>
+          </div>
+        </div>
+        <div class="media-card-body">
+          <div class="video-wrap">
+            <iframe
+              src="video.mp4"
+              title="Video Tech Community"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+          <p class="video-desc">
+            Video motivasi untuk para anggota Tech Community.
+          </p>
+        </div>
+      </div>
+
+      <a href="./index.html" class="btn-back">← Kembali ke Home</a>
+    </div>
+
+    <footer>&copy; 2026 TechCommunity &mdash; Tugas Praktikum PDW</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      var gambarList = [
+        {
+          url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
+          info: "Suasana tim teknologi yang sedang bekerja bersama.",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80",
+          info: "Seorang developer sedang fokus menulis kode program.",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80",
+          info: "Teknologi dan inovasi untuk masa depan yang lebih baik.",
+        },
+      ];
+
+      var currentIdx = 0;
+      var infoTerbuka = false;
+
+      function gantiGambar(idx, btn) {
+        currentIdx = idx;
+        var img = document.getElementById("gambar-utama");
+        img.style.opacity = "0";
+        setTimeout(function () {
+          img.src = gambarList[idx].url;
+          img.style.opacity = "1";
+        }, 220);
+
+        if (infoTerbuka) {
+          document.getElementById("info-gambar").textContent =
+            gambarList[idx].info;
+        }
+
+        document.querySelectorAll(".btn-img").forEach(function (b) {
+          b.classList.remove("active");
+        });
+        btn.classList.add("active");
+      }
+
+      function tampilInfo(btn) {
+        var box = document.getElementById("info-gambar");
+        if (infoTerbuka) {
+          box.style.display = "none";
+          infoTerbuka = false;
+          btn.classList.remove("active");
+        } else {
+          box.textContent = gambarList[currentIdx].info;
+          box.style.display = "block";
+          infoTerbuka = true;
+          btn.classList.add("active");
+        }
+      }
+
+      var audio = document.getElementById("audio-ku");
+      var status = document.getElementById("status-audio");
+
+      function putarAudio() {
+        audio.play();
+        status.textContent = "Status: sedang diputar...";
+      }
+
+      function jedaAudio() {
+        audio.pause();
+        status.textContent = "Status: dijeda";
+      }
+
+      function stopAudio() {
+        audio.pause();
+        audio.currentTime = 0;
+        status.textContent = "Status: dihentikan";
+      }
+
+      audio.addEventListener("ended", function () {
+        status.textContent = "Status: selesai diputar";
+      });
+    </script>
   </body>
 </html>

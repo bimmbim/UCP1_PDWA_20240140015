@@ -1,32 +1,441 @@
 <!doctype html>
-<html>
+<html lang="id">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Community</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0f0f17;
+        color: #d4d4e8;
+        font-family: "Segoe UI", sans-serif;
+        min-height: 100vh;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        background-color: #13131f !important;
+        border-bottom: 1px solid #1e1e32;
+        padding: 14px 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: #fff !important;
+        letter-spacing: -0.3px;
+      }
+
+      .navbar-brand span {
+        color: #6c63ff;
+      }
+
+      .nav-link {
+        color: #888 !important;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 6px 14px !important;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .nav-link:hover {
+        color: #fff !important;
+        background: #1e1e32;
+      }
+      .nav-link.active {
+        color: #fff !important;
+        background: #1e1e32;
+      }
+
+      /* HERO */
+      .hero {
+        padding: 80px 20px 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(108, 99, 255, 0.12) 0%,
+          transparent 65%
+        );
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+
+      .hero-label {
+        display: inline-block;
+        background: rgba(108, 99, 255, 0.12);
+        border: 1px solid rgba(108, 99, 255, 0.3);
+        color: #9d97ff;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.15;
+        margin-bottom: 16px;
+      }
+
+      .hero h1 span {
+        color: #6c63ff;
+      }
+
+      .hero p {
+        color: #888;
+        font-size: 1rem;
+        max-width: 460px;
+        margin: 0 auto 28px;
+        line-height: 1.7;
+      }
+
+      /* CARDS */
+      .feature-card {
+        background: #13131f;
+        border: 1px solid #1e1e32;
+        border-radius: 12px;
+        padding: 24px;
+        height: 100%;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+
+      .feature-card:hover {
+        border-color: #6c63ff;
+        transform: translateY(-3px);
+      }
+
+      .feature-card .icon {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+      }
+
+      .feature-card h5 {
+        color: #fff;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      .feature-card p {
+        color: #666;
+        font-size: 0.875rem;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* SECTION */
+      .section-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #6c63ff;
+        margin-bottom: 6px;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      /* TABLE */
+      .table-wrap {
+        background: #13131f;
+        border: 1px solid #1e1e32;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .table {
+        margin: 0;
+        color: #d4d4e8;
+      }
+
+      .table thead tr {
+        background: #1a1a2e;
+        border-bottom: 1px solid #1e1e32;
+      }
+
+      .table thead th {
+        color: #666;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 14px 20px;
+        border: none;
+      }
+
+      .table tbody td {
+        padding: 13px 20px;
+        border-color: #1e1e32;
+        font-size: 0.9rem;
+        vertical-align: middle;
+      }
+
+      .table tbody tr {
+        border-color: #1e1e32;
+      }
+      .table tbody tr:hover {
+        background: rgba(108, 99, 255, 0.05);
+      }
+      .table tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      .minat-badge {
+        background: rgba(108, 99, 255, 0.12);
+        color: #9d97ff;
+        border: 1px solid rgba(108, 99, 255, 0.2);
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 20px;
+      }
+
+      .num-col {
+        color: #444;
+        font-size: 0.82rem;
+      }
+      .email-col {
+        color: #666;
+        font-size: 0.85rem;
+      }
+
+      /* ALERT */
+      .alert-success {
+        background: rgba(34, 197, 94, 0.08);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        color: #4ade80;
+        border-radius: 10px;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid #1e1e32;
+        text-align: center;
+        padding: 24px;
+        color: #444;
+        font-size: 0.82rem;
+        margin-top: 80px;
+      }
+
+      /* BTN */
+      .btn-purple {
+        background: #6c63ff;
+        color: #fff;
+        border: none;
+        font-weight: 600;
+        padding: 10px 24px;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+
+      .btn-purple:hover {
+        background: #7d75ff;
+        color: #fff;
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: #d4d4e8;
+        border: 1px solid #1e1e32;
+        font-weight: 600;
+        padding: 10px 24px;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+
+      .btn-ghost:hover {
+        border-color: #6c63ff;
+        color: #9d97ff;
+      }
+    </style>
   </head>
   <body>
-    <h3>Selamat Datang Di Tech Community</h3>
-    <p>Ini halaman utama.</p>
-    <p>Dengan anda join Tech Community, anda dapat</p>
-    <ul>
-      <li>Memperluas Relasi</li>
-      <li>Belajar Bareng</li>
-    </ul>
-    <a href="daftar.html">Form Pendaftaran</a> |
-    <a href="multimedia.html">Lihat Multimedia</a>
-    <div id="hasil"></div>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html"
+          >Tech<span>Community</span></a
+        >
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto gap-1">
+            <li class="nav-item">
+              <a class="nav-link active" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./daftar.html">Daftar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./multimedia.html">Multimedia</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-label">🚀 Komunitas Teknologi</div>
+      <h1>Selamat Datang di<br /><span>Tech Community</span></h1>
+      <p>
+        Tempat para pecinta teknologi belajar bareng, sharing ilmu, dan
+        memperluas jaringan.
+      </p>
+      <div class="d-flex gap-2 justify-content-center flex-wrap">
+        <a href="./daftar.html" class="btn btn-purple">Daftar Sekarang</a>
+        <a href="./multimedia.html" class="btn btn-ghost">Lihat Multimedia</a>
+      </div>
+    </div>
+
+    <div class="container pb-5">
+      <div class="row g-3 mb-5">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="icon">🤝</div>
+            <h5>Perluas Relasi</h5>
+            <p>
+              Kenalan sama banyak orang dari dunia teknologi di berbagai bidang.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="icon">📚</div>
+            <h5>Belajar Bareng</h5>
+            <p>
+              Sharing materi, diskusi bareng, dan belajar hal-hal baru di bidang
+              tech.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="icon">🏆</div>
+            <h5>Event & Hackathon</h5>
+            <p>
+              Ikuti kompetisi, workshop, dan berbagai event seru dari komunitas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">Anggota</div>
+      <div class="section-title">Data Anggota Komunitas</div>
+
+      <div
+        id="notif"
+        class="alert alert-success mb-3"
+        style="display: none"
+      ></div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>Bidang Minat</th>
+            </tr>
+          </thead>
+          <tbody id="tabel-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>&copy; 2026 TechCommunity &mdash; Tugas Praktikum PDW</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      var anggota = [
+        {
+          nama: "Andi Pratama",
+          email: "andi@gmail.com",
+          minat: "Web Development",
+        },
+        { nama: "Siti Rahayu", email: "siti@gmail.com", minat: "Data Science" },
+        {
+          nama: "Budi Santoso",
+          email: "budi@gmail.com",
+          minat: "Mobile Development",
+        },
+        {
+          nama: "Dewi Lestari",
+          email: "dewi@gmail.com",
+          minat: "Cybersecurity",
+        },
+      ];
+
+      var newMember = sessionStorage.getItem("newMember");
+      if (newMember) {
+        var m = JSON.parse(newMember);
+        anggota.push(m);
+        sessionStorage.removeItem("newMember");
+        var notif = document.getElementById("notif");
+        notif.innerHTML =
+          "✅ Anggota baru <strong>" +
+          m.nama +
+          "</strong> berhasil ditambahkan!";
+        notif.style.display = "block";
+      }
+
+      var tbody = document.getElementById("tabel-body");
+      for (var i = 0; i < anggota.length; i++) {
+        tbody.innerHTML +=
+          "<tr>" +
+          '<td class="num-col">' +
+          (i + 1) +
+          "</td>" +
+          "<td><strong>" +
+          anggota[i].nama +
+          "</strong></td>" +
+          '<td class="email-col">' +
+          anggota[i].email +
+          "</td>" +
+          '<td><span class="minat-badge">' +
+          anggota[i].minat +
+          "</span></td>" +
+          "</tr>";
+      }
+    </script>
   </body>
 </html>
-
-<h1>Data Anggota</h1>
-<table border="3">
-  <tr>
-    <th>Nama</th>
-    <th>Email</th>
-    <th>Bidang Minat</th>
-  </tr>
-  <tr>
-    <td>Contoh 1</td>
-    <td>Contoh 2</td>
-    <td>Contoh 3</td>
-  </tr>
-</table>
