@@ -124,7 +124,6 @@ function stopAudio() {
   document.getElementById("status-audio").textContent = "Status: dihentikan";
 }
 
-// Jalankan fungsi sesuai halaman
 window.onload = function () {
   renderTabel();
 
