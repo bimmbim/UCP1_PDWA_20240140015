@@ -1,0 +1,106 @@
+body {
+  background: #111;
+  color: #ddd; /* dinaikin biar semua teks kebaca */
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #1a1a1a;
+}
+
+.navbar a {
+  color: #bbb;
+}
+
+.navbar a:hover {
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  background: #1a1a1a;
+  padding: 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  color: #fff;
+}
+
+.hero p {
+  color: #aaa; /* sebelumnya terlalu gelap */
+}
+
+/* CARD */
+.card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.card h5 {
+  color: #fff;
+}
+
+.card p {
+  color: #aaa; /* FIX utama */
+}
+
+/* TABLE */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.table td {
+  background: #111;
+  color: #ddd;
+}
+
+.table th,
+.table td {
+  border: 1px solid #2a2a2a;
+  padding: 10px;
+}
+
+/* FORM */
+.form-box {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+input,
+select {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  color: #ddd;
+  padding: 8px;
+  width: 100%;
+}
+
+/* MEDIA */
+.media-box {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.media-box p {
+  color: #aaa; /* biar deskripsi kebaca */
+}
+
+/* FOOTER */
+footer {
+  background: #1a1a1a;
+  text-align: center;
+  padding: 10px;
+  color: #777;
+}
